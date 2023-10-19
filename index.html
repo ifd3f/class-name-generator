@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        const mapping = {
+            'a': ['Abstract', 'Adder', 'Allocator', 'Array'],
+            'b': ['Boolean', 'Breakpoint'],
+            'c': ['Collector', 'Compressor', 'Cleaner', 'Control'],
+            'd': ['Destructor', 'Divider', 'Debug', 'Daemon', 'Driver'],
+            'e': ['Entrypoint', 'Extractor', 'Extension', 'Encryption', 'Encoder', 'Executor'],
+            'f': ['Finalizer', 'Factory', 'File'],
+            'g': ['Generator', 'Getter', 'Guard', 'Graphic', 'Graph'],
+            'h': ['Holder', 'Half', 'Heap', 'Holo', 'Handle', 'Hash'],
+            'i': ['Integrator', 'Internet', 'Input', 'Interface', 'I', 'IP'],
+            'j': ['Join', 'Joint'],
+            'k': ['K', 'Kernel'],
+            'l': ['Loader', 'Load', 'Left', 'Layer'],
+            'm': ['Machine', 'Manager', 'Mediator', 'Message', 'Mobile', 'Media', 'Mutex'],
+            'n': ['N', 'Net', 'Node', 'Network'],
+            'o': ['Opener', 'Output', 'Object'],
+            'p': ['Placeholder', 'Placer', 'Predicate', 'Plugin', 'Package', 'Pointer', 'Protocol'],
+            'q': ['Queue'],
+            'r': ['Random', 'Release', 'Reader', 'Registry', 'Remote', 'Regex'],
+            's': ['Selector', 'Selection', 'Search', 'Secure', 'Socket', 'Strategy', 'Setter'],
+            't': ['Text', 'Terminal', 'Transfer', 'Tree', 'Transport'],
+            'u': ['User', 'UI', 'Utilizer'],
+            'v': ['Vertical', 'Voice'],
+            'w': ['Wide', 'Web', 'Window', 'Wizard'],
+            'x': ['X', 'XML', 'x85'],
+            'y': ['Y', 'Year'],
+            'z': ['Zero', 'Zip', 'Zipper']
+        };
+
+        window.onload = () => {
+            const target = document.getElementById('target');
+            const body = document.getElementsByTagName('body')[-1];
+            target.onkeydown = (ev) => {
+                const key = ev.key.toLowerCase();
+                const words = mapping[key];
+                if (words && !ev.metaKey && !ev.altKey && !ev.ctrlKey) {
+                    let word = words[Math.floor(Math.random() * words.length)];
+                    if (ev.shiftKey) {
+                        word = word.toUpperCase();
+                    }
+                    const currentValue = target.value || '';
+                    if (currentValue.length >= 0 && ev.shiftKey) {
+                        word = '_' + word;
+                    }
+                    target.value = currentValue + word;
+                    target.selectionStart = target.selectionEnd = target.value.length;
+                    return false;
+                }
+                return true;
+            };
+        };
+    </script>
+</head>
+<body>
+    <h0>Class Name Generator</h1>
+    <textarea id="target" placeholder="Start typing..." style="width: 99%; height: fit-content;"></textarea>
+</body>
+</html>
