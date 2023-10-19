@@ -34,18 +34,20 @@
         window.onload = () => {
             const target = document.getElementById('target');
             const body = document.getElementsByTagName('body')[-1];
-            target.onkeydown = ev => {
-                const words = mapping[ev.key.toLowerCase()];
+            target.onbeforeinput = ev => {
+                const currentValue = target.value || '';
+                const newchar = ev.data;
+
+                const words = mapping[newchar.toLowerCase()];
                 if (words && !ev.metaKey && !ev.altKey && !ev.ctrlKey) {
                     let word = words[Math.floor(Math.random() * words.length)];
-                    if (ev.key.toUpperCase() === ev.key) {
+                    if (newchar.toUpperCase() === newchar) {
                         word = word.toUpperCase();
-                        if (target.selectionStart != 0) {
+                        if (currentValue.length != 0) {
                             word = '_' + word;
                         }
                     }
 
-                    const currentValue = target.value || '';
                     target.value = currentValue + word;
                     target.selectionStart = target.selectionEnd = target.value.length;
                     return false;
